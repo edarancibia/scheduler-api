@@ -1,14 +1,22 @@
-import UserRegister from "./components/UserRegister"
+import React, { useState } from 'react';
+import { UserRegister, CreateBusiness } from './components';
 
+const App = () => {
+  const [showCreateBusiness, setShowCreateBusiness] = useState(false);
 
-function App() {
+  const handleUserRegisterSuccess = () => {
+    setShowCreateBusiness(true);
+  };
 
   return (
-    <>
-      <h1>Scheduler</h1>
-      <UserRegister />
-    </>
-  )
-}
+    <div className="min-h-screen bg-gray-100">
+      {showCreateBusiness ? (
+        <CreateBusiness />
+      ) : (
+        <UserRegister onSuccess={handleUserRegisterSuccess} />
+      )}
+    </div>
+  );
+};
 
-export default App
+export default App;
